@@ -1,0 +1,63 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Airbnb</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+
+<div class="header_bar">
+  <div>Simple Airbnb</div>
+  <div class="btn btn-primary"><%= link_to "Add Flat", new_flat_path %></div>
+
+<div class="search_bar">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <form action="/flats/search" method="get">
+    <input type="text" name='q' placeholder="search keywords">
+    <input type="submit" value="submit">
+  </form>
+</div>
+
+</div>
+
+<h1>All our flats</h1>
+
+
+
+
+
+<div class="container">
+
+  <div class="flats_cards">
+
+    <% @flats.each do |flat| %>
+    <div class="flat_card">
+      <img src="https://loremflickr.com/320/240/house" alt="">
+      <h4><%= flat.name %></h4>
+      <p><%= flat.address %></p>
+
+      <div class="icons_bar">
+        <p><i class="fas fa-pound-sign"><%= flat.price_per_night %> |     </i></p>
+        <p>|  <%= flat.number_of_guests %> <i class="fas fa-user-friends"></i></p>
+      </div>
+
+      <div class="more_info"><%= link_to "more info", flat_path(flat.id) %></div>
+
+    </div>
+
+  <% end %>
+  </div> <!-- end of flats-cards-container-->
+
+</div> <!-- end of container-->
+
+
+</body>
+</html>
+
+
+
